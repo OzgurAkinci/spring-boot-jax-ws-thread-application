@@ -11,7 +11,7 @@ import javax.xml.ws.ResponseWrapper;
 import java.util.List;
 
 
-@WebService(targetNamespace = "http://185.247.139.7:8182/thread-ws-server-application/", name = "expense")
+@WebService(targetNamespace = "http://185.247.139.7:8182/thread-ws-server-application/", name = "expenseService")
 public interface ExpenseService {
 
     @WebResult(name = "return", targetNamespace = "")

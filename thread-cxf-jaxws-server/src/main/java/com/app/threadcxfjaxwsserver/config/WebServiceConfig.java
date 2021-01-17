@@ -60,7 +60,7 @@ public class WebServiceConfig implements ServletContextInitializer {
         EndpointImpl endpoint = new EndpointImpl(bus, new ExpenseServiceImpl(), null, null, new MetricsFeature[]{
             new MetricsFeature(metricsProvider)
         });
-        endpoint.publish("/expense");
+        endpoint.publish("/expenseService");
         return endpoint;
     }
 }
