@@ -1,14 +1,12 @@
 
 package com.project.generated;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-import javax.xml.ws.WebEndpoint;
-import javax.xml.ws.WebServiceClient;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.WebServiceFeature;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 
 /**
@@ -17,78 +15,36 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ExpenseService", targetNamespace = "http://185.247.139.7:8182/thread-ws-server-application/", wsdlLocation = "file:/C:/Users/akinc/AppData/Local/Temp/tempdir17171677453066010248.tmp/expense_1.wsdl")
-public class ExpenseService
-    extends Service
-{
+@WebService(name = "expenseService", targetNamespace = "http://185.247.139.7:8182/thread-ws-server-application/")
+@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
+@XmlSeeAlso({
+    ObjectFactory.class
+})
+public interface ExpenseService {
 
-    private final static URL EXPENSESERVICE_WSDL_LOCATION;
-    private final static WebServiceException EXPENSESERVICE_EXCEPTION;
-    private final static QName EXPENSESERVICE_QNAME = new QName("http://185.247.139.7:8182/thread-ws-server-application/", "ExpenseService");
-
-    static {
-        URL url = null;
-        WebServiceException e = null;
-        try {
-            url = new URL("file:/C:/Users/akinc/AppData/Local/Temp/tempdir17171677453066010248.tmp/expense_1.wsdl");
-        } catch (MalformedURLException ex) {
-            e = new WebServiceException(ex);
-        }
-        EXPENSESERVICE_WSDL_LOCATION = url;
-        EXPENSESERVICE_EXCEPTION = e;
-    }
-
-    public ExpenseService() {
-        super(__getWsdlLocation(), EXPENSESERVICE_QNAME);
-    }
-
-    public ExpenseService(WebServiceFeature... features) {
-        super(__getWsdlLocation(), EXPENSESERVICE_QNAME, features);
-    }
-
-    public ExpenseService(URL wsdlLocation) {
-        super(wsdlLocation, EXPENSESERVICE_QNAME);
-    }
-
-    public ExpenseService(URL wsdlLocation, WebServiceFeature... features) {
-        super(wsdlLocation, EXPENSESERVICE_QNAME, features);
-    }
-
-    public ExpenseService(URL wsdlLocation, QName serviceName) {
-        super(wsdlLocation, serviceName);
-    }
-
-    public ExpenseService(URL wsdlLocation, QName serviceName, WebServiceFeature... features) {
-        super(wsdlLocation, serviceName, features);
-    }
 
     /**
      * 
+     * @param parameters
      * @return
-     *     returns Expense
+     *     returns _7._139._247._185._8182.thread_ws_server_application.GetExpensesResponse
      */
-    @WebEndpoint(name = "ExpensePort")
-    public Expense getExpensePort() {
-        return super.getPort(new QName("http://185.247.139.7:8182/thread-ws-server-application/", "ExpensePort"), Expense.class);
-    }
+    @WebMethod(action = "urn:Expenses")
+    @WebResult(name = "getExpensesResponse", targetNamespace = "http://185.247.139.7:8182/thread-ws-server-application/", partName = "parameters")
+    public GetExpensesResponse getExpenses(
+        @WebParam(name = "getExpensesRequest", targetNamespace = "http://185.247.139.7:8182/thread-ws-server-application/", partName = "parameters")
+        GetExpensesRequest parameters);
 
     /**
      * 
-     * @param features
-     *     A list of {@link WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
+     * @param parameters
      * @return
-     *     returns Expense
+     *     returns _7._139._247._185._8182.thread_ws_server_application.SaveExpenseResponse
      */
-    @WebEndpoint(name = "ExpensePort")
-    public Expense getExpensePort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://185.247.139.7:8182/thread-ws-server-application/", "ExpensePort"), Expense.class, features);
-    }
-
-    private static URL __getWsdlLocation() {
-        if (EXPENSESERVICE_EXCEPTION!= null) {
-            throw EXPENSESERVICE_EXCEPTION;
-        }
-        return EXPENSESERVICE_WSDL_LOCATION;
-    }
+    @WebMethod(action = "urn:Expenses")
+    @WebResult(name = "saveExpenseResponse", targetNamespace = "http://185.247.139.7:8182/thread-ws-server-application/", partName = "parameters")
+    public SaveExpenseResponse saveExpense(
+        @WebParam(name = "saveExpenseRequest", targetNamespace = "http://185.247.139.7:8182/thread-ws-server-application/", partName = "parameters")
+        SaveExpenseRequest parameters);
 
 }

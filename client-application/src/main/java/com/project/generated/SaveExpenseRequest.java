@@ -31,17 +31,17 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SaveExpenseRequest {
 
-    protected Expense_Type expense;
+    protected Expense expense;
 
     /**
      * Gets the value of the expense property.
      * 
      * @return
      *     possible object is
-     *     {@link Expense_Type }
+     *     {@link Expense }
      *     
      */
-    public Expense_Type getExpense() {
+    public Expense getExpense() {
         return expense;
     }
 
@@ -50,10 +50,10 @@ public class SaveExpenseRequest {
      * 
      * @param value
      *     allowed object is
-     *     {@link Expense_Type }
+     *     {@link Expense }
      *     
      */
-    public void setExpense(Expense_Type value) {
+    public void setExpense(Expense value) {
         this.expense = value;
     }
 

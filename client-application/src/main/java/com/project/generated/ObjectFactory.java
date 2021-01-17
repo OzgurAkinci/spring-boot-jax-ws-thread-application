@@ -69,11 +69,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Expense_Type }
+     * Create an instance of {@link Expense }
      * 
      */
-    public Expense_Type createExpense_Type() {
-        return new Expense_Type();
+    public Expense createExpense() {
+        return new Expense();
     }
 
     /**

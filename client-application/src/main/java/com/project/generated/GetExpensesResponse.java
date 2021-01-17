@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class GetExpensesResponse {
 
     @XmlElement(name = "return")
-    protected List<Expense_Type> _return;
+    protected List<Expense> _return;
 
     /**
      * Gets the value of the return property.
@@ -55,13 +55,13 @@ public class GetExpensesResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Expense_Type }
+     * {@link Expense }
      * 
      * 
      */
-    public List<Expense_Type> getReturn() {
+    public List<Expense> getReturn() {
         if (_return == null) {
-            _return = new ArrayList<Expense_Type>();
+            _return = new ArrayList<Expense>();
         }
         return this._return;
     }

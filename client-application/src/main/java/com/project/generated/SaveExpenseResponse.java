@@ -33,17 +33,17 @@ import javax.xml.bind.annotation.XmlType;
 public class SaveExpenseResponse {
 
     @XmlElement(name = "return")
-    protected Expense_Type _return;
+    protected Expense _return;
 
     /**
      * Gets the value of the return property.
      * 
      * @return
      *     possible object is
-     *     {@link Expense_Type }
+     *     {@link Expense }
      *     
      */
-    public Expense_Type getReturn() {
+    public Expense getReturn() {
         return _return;
     }
 
@@ -52,10 +52,10 @@ public class SaveExpenseResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link Expense_Type }
+     *     {@link Expense }
      *     
      */
-    public void setReturn(Expense_Type value) {
+    public void setReturn(Expense value) {
         this._return = value;
     }
 

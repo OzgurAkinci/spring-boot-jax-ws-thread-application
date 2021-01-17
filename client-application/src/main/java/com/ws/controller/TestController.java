@@ -1,33 +1,36 @@
 package com.ws.controller;
 
-import com.project.generated.Expense;
-import com.project.generated.ExpenseService;
-import com.project.generated.GetExpensesRequest;
-import com.project.generated.GetExpensesResponse;
+import com.project.generated.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.math.BigDecimal;
 
 @RequestMapping("/expense")
 @RestController
 @Component
 public class TestController {
 
-    private static Expense expense;
+    private static ExpenseService expenseService;
     static {
-        expense = new ExpenseService().getExpensePort();
+        expenseService = new ExpenseService_Service().getExpensePort();
     }
 
     @GetMapping("/executeGetExpenses")
     public GetExpensesResponse getExpenses() {
         GetExpensesRequest getExpensesRequest = new GetExpensesRequest();
-        return expense.getExpenses(getExpensesRequest);
+        return expenseService.getExpenses(getExpensesRequest);
     }
 
     @GetMapping("/executeSaveThreadWithoutThread")
-    public GetExpensesResponse saveThreadWithoutThread() {
-        GetExpensesRequest getExpensesRequest = new GetExpensesRequest();
-        return expense.getExpenses(getExpensesRequest);
+    public SaveExpenseResponse saveThreadWithoutThread() {
+        SaveExpenseRequest saveExpenseRequest = new SaveExpenseRequest();
+        Expense expense = new Expense();
+        expense.setQuantity(new BigDecimal(1000));
+        expense.setExpenseType("");
+        saveExpenseRequest.setExpense(expense);
+        return expenseService.saveExpense(saveExpenseRequest);
     }
 }
