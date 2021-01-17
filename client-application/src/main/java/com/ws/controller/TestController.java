@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
 @RequestMapping("/expense")
 @RestController
@@ -25,12 +28,29 @@ public class TestController {
     }
 
     @GetMapping("/executeSaveThreadWithoutThread")
-    public SaveExpenseResponse saveThreadWithoutThread() {
+    public String saveThreadWithoutThread() {
         SaveExpenseRequest saveExpenseRequest = new SaveExpenseRequest();
-        Expense expense = new Expense();
-        expense.setQuantity(new BigDecimal(1000));
-        expense.setExpenseType("");
-        saveExpenseRequest.setExpense(expense);
-        return expenseService.saveExpense(saveExpenseRequest);
+
+        List<String> list = new ArrayList<>();
+        for(int i=0; i<1000; i++){
+            list.add("ExpenseType-" + i);
+        }
+
+
+        // Async değil
+        long startTime1 = System.currentTimeMillis();
+        for (String d: list) {
+            Expense expense = new Expense();
+            expense.setQuantity(new BigDecimal(1000));
+            expense.setExpenseType(d);
+            saveExpenseRequest.setExpense(expense);
+            expenseService.saveExpense(saveExpenseRequest);
+        }
+
+        // Burada, üstteki method Async olacak.
+
+
+
+        return "Execution time: " + ((System.currentTimeMillis() - startTime1) + " ms." + "Execution time (async) : ");
     }
 }
