@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://185.247.139.7:8182/thread-ws-server-application/soap/expense" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://185.247.139.7:8182/thread-ws-server-application/soap/expense" targetNamespace="http://185.247.139.7:8182/thread-ws-server-application/soap/expense">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://185.247.139.7:8182/thread-ws-server-application/soap/expense">
+
+    <xs:element name="GetExpenseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SaveExpenseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="expenseType" type="xs:string"/>
+                <xs:element name="quantity" type="xs:decimal"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetExpenseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="GetExpense" type="tns:GetExpense"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SaveExpenseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="SaveExpense" type="tns:SaveExpense"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="GetExpense">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="expenseType" type="xs:string"/>
+            <xs:element name="quantity" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SaveExpense">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="SaveExpenseRequest">
+    <wsdl:part element="tns:SaveExpenseRequest" name="SaveExpenseRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetExpenseResponse">
+    <wsdl:part element="tns:GetExpenseResponse" name="GetExpenseResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetExpenseRequest">
+    <wsdl:part element="tns:GetExpenseRequest" name="GetExpenseRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SaveExpenseResponse">
+    <wsdl:part element="tns:SaveExpenseResponse" name="SaveExpenseResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ExpensePort">
+    <wsdl:operation name="SaveExpense">
+      <wsdl:input message="tns:SaveExpenseRequest" name="SaveExpenseRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:SaveExpenseResponse" name="SaveExpenseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpense">
+      <wsdl:input message="tns:GetExpenseRequest" name="GetExpenseRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetExpenseResponse" name="GetExpenseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExpensePortSoap11" type="tns:ExpensePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SaveExpense">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SaveExpenseRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SaveExpenseResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpense">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetExpenseRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetExpenseResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExpensePortService">
+    <wsdl:port binding="tns:ExpensePortSoap11" name="ExpensePortSoap11">
+      <soap:address location="http://185.247.139.7:8182/thread-ws-server-application/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
